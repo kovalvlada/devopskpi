@@ -1,9 +1,8 @@
 Source: funca-program
 Section: utils
 Priority: optional
-Maintainer: Your Name <youremail@example.com>
-Build-Depends: debhelper (= 12), g++
-Standards-Version: 4.5.0
+Maintainer: Your Name <kovalvlada0910@gmail.com>
+Build-Depends: debhelper-compat (= 12), autotools-dev
 
 Package: funca-program
 Architecture: any

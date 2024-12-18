@@ -1,0 +1,7 @@
+564068e2de5db1102c89882536c6dbd2  ./configure.ac
+50eecc1b0e5c5183e194eaf71439d3e7  ./funca.cpp
+77531fbd2d58284e41d26b4f5f0955c5  ./funca.h
+f0b7fa2bdb27bd6bf302996989b07bcf  ./Makefile
+5f2df90cfbe9350bb39dd1a8df014906  ./main.cpp
+b1e3c87e79f863def1ee23c6239e7229  ./.github/workflows/c-cpp.yml
+74c7e3c85f20afdc3678285dc2d66811  ./Makefile.am
