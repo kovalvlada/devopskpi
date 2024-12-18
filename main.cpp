@@ -1,10 +1,10 @@
 #include <iostream>
 #include "funca.h"
+#include "HTTP_Server.h"
 
 int main() {
     FuncAClass funca;
-    int n = 10; // Example value for n
-    double x = 1.0; // Example value for x (in radians)
-    std::cout << "FuncA result: " << funca.FuncA(n, x) << std::endl;
+    std::cout << "Starting HTTP server on port 8081..." << std::endl;
+    CreateHTTPserver();
     return 0;
 }

@@ -104,7 +104,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_funca_program_OBJECTS = funca_program-main.$(OBJEXT) \
-	funca_program-funca.$(OBJEXT)
+	funca_program-funca.$(OBJEXT) \
+	funca_program-HTTP_Server.$(OBJEXT)
 funca_program_OBJECTS = $(am_funca_program_OBJECTS)
 funca_program_LDADD = $(LDADD)
 funca_program_LINK = $(CXXLD) $(funca_program_CXXFLAGS) $(CXXFLAGS) \
@@ -128,6 +129,7 @@ DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/funca.Po \
+	./$(DEPDIR)/funca_program-HTTP_Server.Po \
 	./$(DEPDIR)/funca_program-funca.Po \
 	./$(DEPDIR)/funca_program-main.Po ./$(DEPDIR)/test_funca.Po
 am__mv = mv -f
@@ -503,7 +505,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-funca_program_SOURCES = main.cpp funca.cpp funca.h
+funca_program_SOURCES = main.cpp funca.cpp funca.h HTTP_Server.cpp HTTP_Server.h
 funca_program_CXXFLAGS = -fno-lto
 test_funca_SOURCES = test_funca.cpp funca.cpp funca.h
 EXTRA_DIST = Makefile.am
@@ -605,6 +607,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funca.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funca_program-HTTP_Server.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funca_program-funca.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/funca_program-main.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_funca.Po@am__quote@ # am--include-marker
@@ -656,6 +659,20 @@ funca_program-funca.obj: funca.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='funca.cpp' object='funca_program-funca.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-funca.obj `if test -f 'funca.cpp'; then $(CYGPATH_W) 'funca.cpp'; else $(CYGPATH_W) '$(srcdir)/funca.cpp'; fi`
+
+funca_program-HTTP_Server.o: HTTP_Server.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-HTTP_Server.o -MD -MP -MF $(DEPDIR)/funca_program-HTTP_Server.Tpo -c -o funca_program-HTTP_Server.o `test -f 'HTTP_Server.cpp' || echo '$(srcdir)/'`HTTP_Server.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-HTTP_Server.Tpo $(DEPDIR)/funca_program-HTTP_Server.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='HTTP_Server.cpp' object='funca_program-HTTP_Server.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-HTTP_Server.o `test -f 'HTTP_Server.cpp' || echo '$(srcdir)/'`HTTP_Server.cpp
+
+funca_program-HTTP_Server.obj: HTTP_Server.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-HTTP_Server.obj -MD -MP -MF $(DEPDIR)/funca_program-HTTP_Server.Tpo -c -o funca_program-HTTP_Server.obj `if test -f 'HTTP_Server.cpp'; then $(CYGPATH_W) 'HTTP_Server.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTP_Server.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-HTTP_Server.Tpo $(DEPDIR)/funca_program-HTTP_Server.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='HTTP_Server.cpp' object='funca_program-HTTP_Server.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-HTTP_Server.obj `if test -f 'HTTP_Server.cpp'; then $(CYGPATH_W) 'HTTP_Server.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTP_Server.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1100,6 +1117,7 @@ clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f ./$(DEPDIR)/funca.Po
+	-rm -f ./$(DEPDIR)/funca_program-HTTP_Server.Po
 	-rm -f ./$(DEPDIR)/funca_program-funca.Po
 	-rm -f ./$(DEPDIR)/funca_program-main.Po
 	-rm -f ./$(DEPDIR)/test_funca.Po
@@ -1151,6 +1169,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f ./$(DEPDIR)/funca.Po
+	-rm -f ./$(DEPDIR)/funca_program-HTTP_Server.Po
 	-rm -f ./$(DEPDIR)/funca_program-funca.Po
 	-rm -f ./$(DEPDIR)/funca_program-main.Po
 	-rm -f ./$(DEPDIR)/test_funca.Po
