@@ -25,26 +25,11 @@ jobs:
       - name: Compile Program
         run: make
 
-      - name: Build Tarball Distribution
-        run: |
-          make dist
-          ls -l *.tar.gz
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: "*.tar.gz"
-
       - name: Build Debian Package
         run: dpkg-buildpackage -us -uc
 
       - name: Upload Debian Package
         uses: actions/upload-artifact@v4
         with:
-          name: deb-package
-          path: ${{github.workspace}}/../*.deb
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
+          name: funca-deb
+          path: /home/runner/work/devopskpi/funca_*.deb
