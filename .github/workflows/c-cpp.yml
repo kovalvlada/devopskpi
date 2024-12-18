@@ -22,6 +22,9 @@ jobs:
       - name: Configure
         run: ./configure
 
+      - name: Generate Debian Control File
+        run: cp debian/control.in debian/control
+
       - name: Compile Program
         run: make
 
