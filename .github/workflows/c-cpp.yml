@@ -2,9 +2,9 @@ name: Build C++ Program
 
 on:
   push:
-    branches: [branchAutoTest]
+    branches: [branchHTTPserver]
   pull_request:
-    branches: [branchAutoTest]
+    branches: [branchHTTPserver]
 
 jobs:
   build:
