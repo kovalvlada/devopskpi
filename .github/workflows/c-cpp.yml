@@ -1,21 +1,37 @@
-
 name: Build C++ Program
 
 on:
   push:
-    branches: [branchMake]
+    branches: [branchAutoMake]
   pull_request:
-    branches: [branchMake]
+    branches: [branchAutoMake]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Build Tools
-        run: sudo apt-get update && sudo apt-get install -y g++ make
+        run: sudo apt-get update && sudo apt-get install -y g++ make autoconf automake
+
+      - name: Run Autoreconf
+        run: autoreconf --install
+
+      - name: Configure
+        run: ./configure
 
       - name: Compile Program
         run: make
+    
+      - name: Build Tarball Distribution
+        run: |
+            make dist
+            ls -l *.tar.gz
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: dist
+            path: '*.tar.gz'
