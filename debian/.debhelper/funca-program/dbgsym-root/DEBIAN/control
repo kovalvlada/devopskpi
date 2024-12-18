@@ -1,0 +1,13 @@
+Package: funca-program-dbgsym
+Package-Type: ddeb
+Source: funca-program
+Version: 1.0-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Your Name <kovalvlada0910@gmail.com>
+Installed-Size: 28
+Depends: funca-program (= 1.0-1)
+Section: debug
+Priority: optional
+Description: debug symbols for funca-program
+Build-Ids: 704cfc6933b6b3c05b579c82f7647faedbaded40
