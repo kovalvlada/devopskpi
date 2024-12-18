@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: funca-deb
-          path: ../funca_1.0.0_amd64.deb
+          path: ${{github.workspace}}/../funca-program_1.0-1_amd64.deb
