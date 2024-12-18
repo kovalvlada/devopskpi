@@ -153,11 +153,8 @@ int CreateHTTPserver()
                 funcValues.push_back(funca.FuncA(5, x)); // Use 5 terms for Taylor series
             }
 
-            for (int i=0; i<500; i++)
-			{
-                std::sort(begin(funcValues), end(funcValues));
-			}
             // Sort once in ascending order
+                std::sort(begin(funcValues), end(funcValues));
 
 			
 			auto t2 = std::chrono::high_resolution_clock::now();
@@ -171,7 +168,8 @@ int CreateHTTPserver()
 			sprintf(strResponse, "%sContent-type: text/html\r\nContent-Length: %ld\r\n\r\n", HTTP_200HEADER, strlen(strTimeEllapsed));
 			
 			if (write(clientSocket, strResponse, strlen(strResponse)) < 0) {
-                perror("Error writing to client socket");
+                perror("Erro
+r writing to client socket");
             }
 			printf("\nResponse: \n%s\n", strResponse);
 

@@ -10,20 +10,58 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the code from the repository
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Install necessary build tools
       - name: Install Build Tools
         run: sudo apt-get update && sudo apt-get install -y g++ make autoconf automake dpkg-dev debhelper build-essential
 
+      # Run autoreconf to generate configuration scripts
       - name: Run Autoreconf
         run: autoreconf --install
 
+      # Configure the project
       - name: Configure
         run: ./configure
 
+      # Compile the program
       - name: Compile Program
         run: make
 
+      # Run unit tests
       - name: Run Unit Tests
         run: make check
+
+      # Install QEMU for cross-platform builds
+      - name: QEMU install
+        uses: docker/setup-qemu-action@v3
+
+      # Install Docker Buildx for multi-platform builds
+      - name: Install Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # List available buildx builders
+      - name: build ls
+        run: docker buildx ls
+
+      # Log in to Docker Hub
+      - name: Log in to dockerhub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build Docker image for amd64 architecture and push to Docker Hub
+      - name: Build Dockerfile image for amd64
+        run: docker build --platform=linux/amd64 -t kovalvlada/optimaserver:amd64 --push .
+
+      # Build Docker image for arm64 architecture and push to Docker Hub
+      - name: Build Dockerfile image for arm64
+        run: docker build --platform=linux/arm64 -t kovalvlada/optimaserver:arm64 --push .
+
+      # Create a Docker manifest to support multiple architectures
+      - name: Create manifest
+        run: docker manifest create kovalvlada/optimaserver --amend kovalvlada/optimaserver:amd64 --amend kovalvlada/optimaserver:arm64
+
+      # Push the Docker manifest to Docker Hub
+      - name: Push manifest to docker hub
+        run: docker manifest push kovalvlada/optimaserver
