@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: funca-deb
-          path: /home/runner/work/devopskpi/funca_*.deb
+          path: /home/runner/work/devopskpi/devopskpi/funca_1.0.0_amd64.deb

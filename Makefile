@@ -206,12 +206,12 @@ AUTOCONF = ${SHELL} '/home/rpjc/Documents/devopskpi/missing' autoconf
 AUTOHEADER = ${SHELL} '/home/rpjc/Documents/devopskpi/missing' autoheader
 AUTOMAKE = ${SHELL} '/home/rpjc/Documents/devopskpi/missing' automake-1.16
 AWK = mawk
-CPPFLAGS = 
+CPPFLAGS = -Wdate-time -D_FORTIFY_SOURCE=2
 CSCOPE = cscope
 CTAGS = ctags
 CXX = g++
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
+CXXDEPMODE = depmode=none
+CXXFLAGS = -g -O2 -ffile-prefix-map=/home/rpjc/Documents/devopskpi=. -flto=auto -ffat-lto-objects -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"FuncA\ Program\" -DPACKAGE_TARNAME=\"funca-program\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"FuncA\ Program\ 1.0\" -DPACKAGE_BUGREPORT=\"kovalvlada0910@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"funca-program\" -DVERSION=\"1.0\"
 DEPDIR = .deps
@@ -225,7 +225,7 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LDFLAGS = 
+LDFLAGS = -Wl,-Bsymbolic-functions -flto=auto -ffat-lto-objects -flto=auto -Wl,-z,relro
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
@@ -255,7 +255,7 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build_alias = 
+build_alias = x86_64-linux-gnu
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
@@ -265,24 +265,24 @@ exec_prefix = ${prefix}
 host_alias = 
 htmldir = ${docdir}
 includedir = ${prefix}/include
-infodir = ${datarootdir}/info
+infodir = ${prefix}/share/info
 install_sh = ${SHELL} /home/rpjc/Documents/devopskpi/install-sh
-libdir = ${exec_prefix}/lib
+libdir = ${prefix}/lib/x86_64-linux-gnu
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
-localstatedir = ${prefix}/var
-mandir = ${datarootdir}/man
+localstatedir = /var
+mandir = ${prefix}/share/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = ${localstatedir}/run
+runstatedir = /run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
-sysconfdir = ${prefix}/etc
+sysconfdir = /etc
 target_alias = 
 top_build_prefix = 
 top_builddir = .
@@ -381,8 +381,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/funca_program-funca.Po # am--include-marker
-include ./$(DEPDIR)/funca_program-main.Po # am--include-marker
+#include ./$(DEPDIR)/funca_program-funca.Po # am--include-marker
+#include ./$(DEPDIR)/funca_program-main.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -391,46 +391,46 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .cpp.o:
-	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CXX)source='$<' object='$@' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXXCOMPILE) -c -o $@ $<
+#	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CXX)source='$<' object='$@' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CXX)source='$<' object='$@' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+#	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CXX)source='$<' object='$@' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 funca_program-main.o: main.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-main.o -MD -MP -MF $(DEPDIR)/funca_program-main.Tpo -c -o funca_program-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-main.Tpo $(DEPDIR)/funca_program-main.Po
-#	$(AM_V_CXX)source='main.cpp' object='funca_program-main.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+#	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-main.o -MD -MP -MF $(DEPDIR)/funca_program-main.Tpo -c -o funca_program-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-main.Tpo $(DEPDIR)/funca_program-main.Po
+#	$(AM_V_CXX)source='main.cpp' object='funca_program-main.o' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
 
 funca_program-main.obj: main.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-main.obj -MD -MP -MF $(DEPDIR)/funca_program-main.Tpo -c -o funca_program-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-main.Tpo $(DEPDIR)/funca_program-main.Po
-#	$(AM_V_CXX)source='main.cpp' object='funca_program-main.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+#	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-main.obj -MD -MP -MF $(DEPDIR)/funca_program-main.Tpo -c -o funca_program-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-main.Tpo $(DEPDIR)/funca_program-main.Po
+#	$(AM_V_CXX)source='main.cpp' object='funca_program-main.obj' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
 
 funca_program-funca.o: funca.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-funca.o -MD -MP -MF $(DEPDIR)/funca_program-funca.Tpo -c -o funca_program-funca.o `test -f 'funca.cpp' || echo '$(srcdir)/'`funca.cpp
-	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-funca.Tpo $(DEPDIR)/funca_program-funca.Po
-#	$(AM_V_CXX)source='funca.cpp' object='funca_program-funca.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-funca.o `test -f 'funca.cpp' || echo '$(srcdir)/'`funca.cpp
+#	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-funca.o -MD -MP -MF $(DEPDIR)/funca_program-funca.Tpo -c -o funca_program-funca.o `test -f 'funca.cpp' || echo '$(srcdir)/'`funca.cpp
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-funca.Tpo $(DEPDIR)/funca_program-funca.Po
+#	$(AM_V_CXX)source='funca.cpp' object='funca_program-funca.o' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-funca.o `test -f 'funca.cpp' || echo '$(srcdir)/'`funca.cpp
 
 funca_program-funca.obj: funca.cpp
-	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-funca.obj -MD -MP -MF $(DEPDIR)/funca_program-funca.Tpo -c -o funca_program-funca.obj `if test -f 'funca.cpp'; then $(CYGPATH_W) 'funca.cpp'; else $(CYGPATH_W) '$(srcdir)/funca.cpp'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-funca.Tpo $(DEPDIR)/funca_program-funca.Po
-#	$(AM_V_CXX)source='funca.cpp' object='funca_program-funca.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-funca.obj `if test -f 'funca.cpp'; then $(CYGPATH_W) 'funca.cpp'; else $(CYGPATH_W) '$(srcdir)/funca.cpp'; fi`
+#	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -MT funca_program-funca.obj -MD -MP -MF $(DEPDIR)/funca_program-funca.Tpo -c -o funca_program-funca.obj `if test -f 'funca.cpp'; then $(CYGPATH_W) 'funca.cpp'; else $(CYGPATH_W) '$(srcdir)/funca.cpp'; fi`
+#	$(AM_V_at)$(am__mv) $(DEPDIR)/funca_program-funca.Tpo $(DEPDIR)/funca_program-funca.Po
+#	$(AM_V_CXX)source='funca.cpp' object='funca_program-funca.obj' libtool=no 
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) 
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(funca_program_CXXFLAGS) $(CXXFLAGS) -c -o funca_program-funca.obj `if test -f 'funca.cpp'; then $(CYGPATH_W) 'funca.cpp'; else $(CYGPATH_W) '$(srcdir)/funca.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
